@@ -25,7 +25,7 @@ class GeometryCalc:
             print(number, ' - ', value)
         print()
 
-    def get_figure(self):
+    def get_figure(self):  # Getting figure from user
         self.display_figures()
         figure_number = 0
         while figure_number not in self.figures.keys():
@@ -38,11 +38,11 @@ class GeometryCalc:
         print(f'Your figure is {self.figures[figure_number]}')
         return figure_number
 
-    def types_of_calculation(self):
+    def types_of_calculation(self):  # Display available types of calculation for user
         for number, value in self.calc_types.items():
             print(number, ' - ', value)
 
-    def get_type_of_calculation(self):
+    def get_type_of_calculation(self):  # Get from user required calculation
         get_figure = self.variable_calculation()
         self.types_of_calculation()
         type_number = 0
@@ -91,7 +91,7 @@ class GeometryCalc:
         return get_figure
 
     @staticmethod
-    def get_side_from_user(side: str):
+    def get_side_from_user(side: str):  # Get from user required sides
         while not isinstance(side, float):
             try:
                 side = float(input(f'Enter {side} \n'))
@@ -100,7 +100,7 @@ class GeometryCalc:
                 print()
         return side
 
-    def asking_for_enter_side_or_radius(self, param: str):
+    def asking_for_enter_side_or_radius(self, param: str):  # Method determines the required values
         if param == 'Circle' or param == 'Sphere':
             return self.get_side_from_user('radius')
 
@@ -153,6 +153,7 @@ class GeometryCalc:
             return [radius, height]
 
     def define_figure(self, figure: str):
+        #  Method collects the object of the necessary figure
         if figure == 'Square':
             side = self.asking_for_enter_side_or_radius('Square')
             square = Square(side)
@@ -217,19 +218,19 @@ class GeometryCalc:
             print("Not found figure")
             return 0
 
-    def calculate(self):
-        test = self.get_type_of_calculation()
-        figure = self.define_figure(self.figures[test[0]])
+    def calculate(self):  # Main method in class
+        f_num_calc_num = self.get_type_of_calculation()
+        figure = self.define_figure(self.figures[f_num_calc_num[0]])
         if figure != 0:
-            if self.calc_types[test[1]] == 'area':
+            if self.calc_types[f_num_calc_num[1]] == 'area':
                 print(f'Area of {figure.figure_name()} = {figure.area()}')
-            elif self.calc_types[test[1]] == 'perimeter':
+            elif self.calc_types[f_num_calc_num[1]] == 'perimeter':
                 print(f'Area of {figure.figure_name()} = {figure.perimeter()}')
-            elif self.calc_types[test[1]] == 'semiperimeter':
+            elif self.calc_types[f_num_calc_num[1]] == 'semiperimeter':
                 print(f'Area of {figure.figure_name()} = {figure.geron()}')
-            elif self.calc_types[test[1]] == 'volume':
+            elif self.calc_types[f_num_calc_num[1]] == 'volume':
                 print(f'Area of {figure.figure_name()} = {figure.volume()}')
-            elif self.calc_types[test[1]] == 'side_area':
+            elif self.calc_types[f_num_calc_num[1]] == 'side_area':
                 print(f'Area of {figure.figure_name()} = {figure.side_area()}')
-            elif self.calc_types[test[1]] == 'base_area':
+            elif self.calc_types[f_num_calc_num[1]] == 'base_area':
                 print(f'Area of {figure.figure_name()} = {figure.area_base()}')
