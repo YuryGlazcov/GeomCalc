@@ -84,14 +84,19 @@ class Triangle(Rectangle):
         super().__init__(x, y)
         self.z = z
 
-    def area(self):
-        return (self.geron() * (self.geron() - self.x) * (self.geron() - self.y) * (self.geron() - self.z)) ** 0.5
-
     def geron(self):
         return self.perimeter() / 2
 
     def perimeter(self):
-        return self.x + self.y + self.y
+        return self.x + self.y + self.z
+
+    def area(self):
+        return (self.geron() *
+                (self.geron() - self.x) *
+                (self.geron() - self.y) *
+                (self.geron() - self.z)) ** 0.5
+
+
 
 
 # Круг
@@ -124,6 +129,9 @@ class Cube(Square):
     def perimeter(self):
         return self.x * 12
 
+    def volume(self):
+        return self.x ** 3
+
 
 # Паралепипед
 class Parallelepiped(Trapezoid):
@@ -133,7 +141,7 @@ class Parallelepiped(Trapezoid):
         super().__init__(x, y, h)
 
     def area(self):
-        return 2 * (self.x + self.y) * self.h
+        return 2 *(self.x * self.y + self.h * self.x + self.h * self.y)
 
     def perimeter(self):
         return self.x * 4 + self.y * 4 + self.h * 4

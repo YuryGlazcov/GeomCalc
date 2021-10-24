@@ -83,10 +83,9 @@ class GeometryCalc:
         elif get_figure in range(10, 13):
             self.calc_types.update({
                 1: 'area',
-                2: 'perimeter',
-                3: 'volume',
-                4: 'area_base',
-                5: 'area_side',
+                2: 'volume',
+                3: 'area_base',
+                4: 'area_side'
             })
         return get_figure
 
